@@ -5,7 +5,7 @@ const Product = require("../models/Product");
 const { v4: uuidv4 } = require("uuid");
 const asyncHandler = require("express-async-handler");
 // PayPal client
-const Environment =  paypal.core.SandboxEnvironment;
+const Environment = paypal.core.SandboxEnvironment;
 
 // process.env.NODE_ENV === 'production'
 //   ? paypal.core.LiveEnvironment
@@ -16,7 +16,7 @@ const paypalClient = new paypal.core.PayPalHttpClient(
 
 
 // CREATE ORDER
-const capturePayment  = async (req, res) => {
+const capturePayment = async (req, res) => {
   const { products } = req.body;
 
   let totalAmount = 0;
@@ -26,7 +26,7 @@ const capturePayment  = async (req, res) => {
     if (!product) return res.status(404).json({ success: false, message: "Product not found" });
     totalAmount += product.price * item.quantity;
   }
-console.log(totalAmount)
+  console.log(totalAmount)
   const request = new paypal.orders.OrdersCreateRequest();
   request.prefer("return=representation");
   request.requestBody({
@@ -52,9 +52,8 @@ console.log(totalAmount)
 // CAPTURE ORDER
 const paymentVerification = async (req, res) => {
   const { details, cart, addressData, payable, user } = req.body;
-
   try {
-    const paypalOrderId = details.id;
+    const paypalOrderId = details.id || "N/A";
     const paypalPayerId = details.payer?.payer_id || "N/A";
     const paypalPayerEmail = details.payer?.email_address || "N/A";
     const products = cart;
@@ -68,7 +67,7 @@ const paymentVerification = async (req, res) => {
       paypalPayerId,
       payable,
       paypalPayerEmail,
-      res
+      // res
     );
 
     return res.status(200).json({ success: true, message: "Payment Captured & Order Placed" });
@@ -95,7 +94,7 @@ const createOrder = asyncHandler(async (
   res
 ) => {
   const userDetails = await User.findById(userId);
-console.log(userDetails)
+  console.log(userDetails)
   const {
     billingCity,
     billingPincode,
@@ -113,10 +112,10 @@ console.log(userDetails)
       shipment_id: 123, // Optional or can be generated
       user: userId,
       shippingInfo: {
-        name: userDetails.name || "N/A",
+        name: userDetails?.name || "N/A",
         address: billingAddress,
         city: billingCity,
-        state: billingState,
+        state: billingState || "N/A",
         pincode: billingPincode,
         phone: billingPhone,
         country: billingCountry,
@@ -158,7 +157,7 @@ console.log(userDetails)
 });
 
 
-  // Send Payment Success Email
+// Send Payment Success Email
 exports.sendPaymentSuccessEmail = async (req, res) => {
   const { orderId, paymentId, amount } = req.body
 
@@ -196,32 +195,32 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 
 
 
-const getAllOrder = async(req,res)=>{
+const getAllOrder = async (req, res) => {
   try {
 
     const userId = req.user.id
 
-    if(!userId){
+    if (!userId) {
       return res.status(401).json({
         success: false,
         message: `User is not Found`,
       })
     }
-    
+
     const orders = await Order.find({ user: userId })
-    .populate({
+      .populate({
         path: 'orderItems.product',
         model: 'Product',
-    })
-    .exec();
+      })
+      .exec();
 
-console.log('Populated Orders:', orders);
+    console.log('Populated Orders:', orders);
 
     return res.status(200).json({
       orders,
-success: true,
-message: `Fetch Orders Successfully`,
-})
+      success: true,
+      message: `Fetch Orders Successfully`,
+    })
 
   } catch (error) {
     console.error(error)
@@ -235,7 +234,7 @@ message: `Fetch Orders Successfully`,
 
 
 module.exports = {
-    capturePayment,
+  capturePayment,
   paymentVerification,
   createOrder,
   getAllOrder

@@ -8,11 +8,11 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-  shipment_id:{
-    type: Number,
-    // required: true,
+    shipment_id: {
+      type: Number,
+      // required: true,
 
-  },
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -46,15 +46,15 @@ const orderSchema = new mongoose.Schema(
     paymentInfo: {
       paypalPayerId: {
         type: String,
-       
+
       },
       paypalOrderId: {
         type: String,
-       
+
       },
       payerEmail: {
         type: String,
-     
+
       },
     },
     orderItems: [
@@ -64,15 +64,15 @@ const orderSchema = new mongoose.Schema(
           ref: "Product",
           required: true,
         },
-     
 
-        
+
+
 
         quantity: {
           type: Number,
           required: true,
         },
-    
+
       },
     ],
     paidAt: {
@@ -87,7 +87,7 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-  
+
     orderStatus: {
       type: String,
       enum: ['Ordered', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],
@@ -95,7 +95,7 @@ const orderSchema = new mongoose.Schema(
     },
     paymentStatus: {
       type: String,
-   
+
       default: 'pending',
     },
   },
