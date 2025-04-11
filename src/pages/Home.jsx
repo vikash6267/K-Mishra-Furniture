@@ -95,21 +95,16 @@ function Home() {
     setProduct2(selectRandomProducts(allProduct));
   }, [allProduct]);
 
-  if (!allProduct.length) {
-    return (
-      <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
-        <div className="spinner"></div>
-      </div>
-    );
-  }
+ 
 
   return (
     <>
-      <div className="mt-[60px] bg-gray-50">
-        <HeroSection />
-        <OffersSection />
-
-        {/* New Furniture Section */}
+    <div className="mt-[60px] bg-gray-50">
+      <HeroSection />
+      <OffersSection />
+  
+      {/* New Furniture Section */}
+      {products.length > 0 && (
         <div className="py-12 bg-white">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between w-full max-w-7xl mx-auto mb-8">
@@ -124,19 +119,21 @@ function Home() {
             <TestSlide products={products} />
           </div>
         </div>
-
-        <FurnitureDeals />
-
-        {/* Banner */}
-        <div className="w-11/12 mx-auto">
-          <img src="/banner-01.webp" alt="Furniture Sale" className="rounded-lg shadow-xl w-full object-cover" />
-          <div className="mt-6">
-            <h2 className="text-xl font-semibold">Discover Your Dream Furniture</h2>
-            <p className="text-gray-600 mt-2">Upgrade your space with our stylish and modern pieces.</p>
-          </div>
+      )}
+  
+      <FurnitureDeals />
+  
+      {/* Banner */}
+      <div className="w-11/12 mx-auto">
+        <img src="/banner-01.webp" alt="Furniture Sale" className="rounded-lg shadow-xl w-full object-cover" />
+        <div className="mt-6">
+          <h2 className="text-xl font-semibold">Discover Your Dream Furniture</h2>
+          <p className="text-gray-600 mt-2">Upgrade your space with our stylish and modern pieces.</p>
         </div>
-
-        {/* Trending Section */}
+      </div>
+  
+      {/* Trending Section */}
+      {products2.length > 0 && (
         <div className="py-12 bg-white">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between w-full max-w-7xl mx-auto mb-8">
@@ -155,14 +152,16 @@ function Home() {
             </div>
           </div>
         </div>
-
-        {/* Testimonials */}
-        <TestimonialCarousel />
-
-        {/* Footer */}
-        <Footer />
-      </div>
-    </>
+      )}
+  
+      {/* Testimonials */}
+      <TestimonialCarousel />
+  
+      {/* Footer */}
+      <Footer />
+    </div>
+  </>
+  
   );
 }
 
