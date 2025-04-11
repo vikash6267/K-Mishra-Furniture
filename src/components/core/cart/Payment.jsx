@@ -87,7 +87,7 @@ function Payment({ payable, coupon }) {
     return (
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-md mx-auto p-4 border rounded"
+        className="w-full  mx-auto lg:p-4  border rounded bg-"
       >
         <PaymentElement />
         <button
@@ -106,7 +106,7 @@ function Payment({ payable, coupon }) {
       <div className="text-center font-bold text-2xl">Payment Methods</div>
   
       {/* Scrollable Area */}
-      <div className="overflow-y-auto max-h-[calc(100vh-300px)] px-4 space-y-6">
+      <div className="overflow-y-auto max-h-[calc(100vh-300px)] lg:px-4 space-y-6">
   
         {/* PayPal */}
         <div className="flex justify-center">

@@ -60,7 +60,7 @@ const handleCoupon = async() =>{
 {/* left */}
 
 
-<div className=' lg:w-[65%]  w-screen border-r-2 '>
+<div className=' lg:w-[65%]  w-screen border-r-2  '>
     {/* <div className="relative mb-2 flex w-full justify-center">
       {steps.map((item) => (
         <>
