@@ -30,31 +30,32 @@ function Header() {
           </button>
           <Navbar isOpen={isMenuOpen} setIsOpen={handleIsMenuOpen} />
         </div>
-        <div className="absolute left-1/2 transform -translate-x-1/2">
-  <Link to="/" className="flex items-center space-x-3">
+        <div className="absolute left-1/2 transform -translate-x-1/2 px-2 sm:px-4">
+  <Link to="/" className="flex flex-wrap items-center justify-center space-x-2 sm:space-x-3">
     {/* Icon with dark blue tone */}
-    <Briefcase className="text-blue-800 w-7 h-7" />
+    <Briefcase className="text-blue-800 w-6 h-6 sm:w-7 sm:h-7 mobile" />
 
     {/* Brand Text */}
-    <div className="flex items-baseline space-x-1">
-      <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-blue-600 tracking-wide">
+    <div className="flex items-baseline space-x-1 text-center">
+      <h2 className="text-lg sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-blue-600 tracking-wide">
         KMISHRA
       </h2>
-      <span className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
+      <span className="text-sm sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
         Enterprises
       </span>
     </div>
 
     {/* Optional additional icon */}
-    <Building2 className="text-blue-600 w-6 h-6" />
+    <Building2 className="text-blue-600 w-5 h-5 sm:w-6 sm:h-6 mobile"  />
   </Link>
 </div>
+
 
 
         <div className="flex items-center gap-4">
           <Link
             to="/profile"
-            className="p-2 rounded-full text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+            className="p-2 mobile rounded-full text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors"
             title="Profile"
           >
             <FaUser className="text-lg" />
