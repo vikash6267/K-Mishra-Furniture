@@ -56,7 +56,7 @@ function ProductCard({ products }) {
                 e.preventDefault()
                 e.stopPropagation()
                 dispatch(addToCart({  products: products,
-                  quantity:0, }))
+                  quantity:1, }))
               }}
               className="bg-white/80 backdrop-blur-sm hover:bg-white p-2 rounded-full shadow-md transition-colors"
             >
@@ -93,7 +93,7 @@ function ProductCard({ products }) {
 
         <button
           onClick={() => dispatch(addToCart({  products: products,
-            quantity:0, }))}
+            quantity:1, }))}
           className="mt-3 w-full py-2 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-md transition-colors text-sm"
         >
           Add to Cart
