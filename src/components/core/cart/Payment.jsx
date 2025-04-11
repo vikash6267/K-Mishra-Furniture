@@ -106,7 +106,7 @@ function Payment({ payable, coupon }) {
       <div className="text-center font-bold text-2xl">Payment Methods</div>
   
       {/* Scrollable Area */}
-      <div className="overflow-y-auto max-h-[calc(100vh-150px)] px-4 space-y-6">
+      <div className="overflow-y-auto max-h-[calc(100vh-300px)] px-4 space-y-6">
   
         {/* PayPal */}
         <div className="flex justify-center">
