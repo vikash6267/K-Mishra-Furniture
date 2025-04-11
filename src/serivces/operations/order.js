@@ -72,7 +72,7 @@ function loadScript(src) {
       // 3. Load PayPal Script
       if (!window.paypal) {
         const script = document.createElement("script");
-        script.src = "https://www.paypal.com/sdk/js?client-id=AUoSnMkfEdyv5_eeR9K98p4eo8ZYoSCT56PTbZlreS_N2A66D6xVNctpaQri9HObQUz59rBqQNW-2lNG";
+        script.src = "https://www.paypal.com/sdk/js?client-id=AXAXG5LXv5cKcQH3giE6aJhz9LBWzhAPY0iNO-4iV_qRwBt5Bb7ynwTFnqdk-XMEFAKUVXSNl3YSPdek";
         script.async = true;
         script.onload = () => renderPayPalButton(orderID);
         document.body.appendChild(script);

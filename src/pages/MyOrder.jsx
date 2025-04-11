@@ -25,7 +25,7 @@ function Order() {
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
-      currency: "USD",
+      currency: "GBP",
     }).format(price);
   };
 

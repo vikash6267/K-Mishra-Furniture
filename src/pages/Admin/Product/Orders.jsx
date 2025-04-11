@@ -59,7 +59,7 @@ function Orders() {
                 Order Status
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Total Price (USD)
+                Total Price (GBP)
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Ordered At
@@ -111,7 +111,7 @@ function Orders() {
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {new Intl.NumberFormat("en-IN", {
                     style: "currency",
-                    currency: "USD",
+                    currency: "GBP",
                   }).format(order.totalPrice)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

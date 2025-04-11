@@ -25,7 +25,7 @@ function Payment({ payable, coupon }) {
       </div>
 
       <div className="flex justify-center">
-        <PayPalScriptProvider  options={{ "client-id": "AYbRvJeQImerka0dvE00pNHjCenRb72jenr5ERICIQsHcauLYMnP-prfnm95bVmq90N7q72UB7kcj_KO" }}>
+        <PayPalScriptProvider  options={{ "client-id": "AXAXG5LXv5cKcQH3giE6aJhz9LBWzhAPY0iNO-4iV_qRwBt5Bb7ynwTFnqdk-XMEFAKUVXSNl3YSPdek" }}>
           <PayPalButtons    fundingSource="paypal" 
             style={{ layout: "vertical" }}
             createOrder={(data, actions) => {

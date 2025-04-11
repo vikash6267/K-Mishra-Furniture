@@ -33,7 +33,7 @@ console.log(totalAmount)
     intent: "CAPTURE",
     purchase_units: [{
       amount: {
-        currency_code: "USD",
+        currency_code: "GBP",
         value: totalAmount.toFixed(2),
       },
     }],

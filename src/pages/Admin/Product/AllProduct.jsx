@@ -73,7 +73,7 @@ function AllProduct() {
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                   />
                   <div className="absolute top-2 right-2 bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-800">
-                  $ {product.price}
+                  £ {product.price}
                   </div>
                 </div>
                 <div className="p-4">
@@ -81,8 +81,8 @@ function AllProduct() {
                   <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                     <span>Quantity: {product.quantity}</span>
-                    <span>High Price: ${product.highPrice}</span>
-                    <span>Price: ${product.price}</span>
+                    <span>High Price: £{product.highPrice}</span>
+                    <span>Price: £{product.price}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <button

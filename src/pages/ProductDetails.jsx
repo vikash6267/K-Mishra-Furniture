@@ -267,7 +267,7 @@ function ProductDetails() {
                       {/* {product.description && product.description} */}
 
                       <h2 className="price">
-                        $ {product.price} &nbsp;
+                      £ {product.price} &nbsp;
                         <small className="del_price">
                           <del className=" text-red-500">{oldPrice}</del>
                         </small>
