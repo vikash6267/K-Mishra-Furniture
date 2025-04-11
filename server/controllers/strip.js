@@ -5,9 +5,12 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 router.post("/process", async (req, res) => {
   try {
-    const myPayment = await stripe.paymentIntents.create({
+    const paymentIntent = await stripe.paymentIntents.create({
       amount: req.body.amount,
-      currency: "usd",
+      currency: "GBP",
+      automatic_payment_methods: {
+        enabled: true, // 💥 Enable all available payment methods
+      },
       metadata: {
         company: "KMISHRA Enterprises",
       },
@@ -15,7 +18,7 @@ router.post("/process", async (req, res) => {
 
     res.status(200).json({
       success: true,
-      client_secret: myPayment.client_secret,
+      client_secret: paymentIntent.client_secret,
     });
   } catch (error) {
     console.error("Stripe Payment Error:", error.message);
@@ -26,6 +29,7 @@ router.post("/process", async (req, res) => {
     });
   }
 });
+
 
 
 module.exports = router;

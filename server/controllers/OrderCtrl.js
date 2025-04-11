@@ -52,6 +52,7 @@ const capturePayment = async (req, res) => {
 // CAPTURE ORDER
 const paymentVerification = async (req, res) => {
   const { details, cart, addressData, payable, user } = req.body;
+  console.log(details)
   try {
     const paypalOrderId = details.id || "N/A";
     const paypalPayerId = details.payer?.payer_id || "N/A";
