@@ -1,0 +1,126 @@
+.products_wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.7rem;
+}
+
+@media (min-width: 1024px) {
+    .products_wrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .products_wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+    }
+}
+
+@media (max-width: 639px) {
+    .products_wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.products_filter_tabs {
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+}
+
+.products_card {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+    box-shadow: 0px 5px 2px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.products_card.browse_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+    font-size: 1.5rem;
+}
+
+.products_card.browse_card a {
+    transition: color 0.3s;
+}
+
+.products_card.browse_card a:hover {
+    color: #eee;
+}
+
+.products_img {
+    width: 100%;
+    background: var(--bg-color-2);
+    text-align: center;
+    padding: 1rem;
+    overflow: hidden;
+
+}
+
+.products_img img {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    object-fit: cover;
+    transition: transform 0.25s ease;
+}
+
+.products_img img:hover {
+    transform: scale(1.05);
+}
+
+.products_details {
+    padding: 1rem;
+}
+
+.products_title {
+    margin-top: 0.8rem;
+    margin-bottom: 0.4rem;
+}
+
+.products_info {
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.products_btn {
+    width: 100%;
+    margin-top: 1.2rem;
+}
+
+.products_btn.active {
+    background-color: green;
+}
+
+.products_btn[disabled] {
+    cursor: not-allowed;
+}
+
+#all_products {
+    padding-top: 8rem;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+}
+
+@media (min-width: 1024px) {
+    #all_products {
+        grid-template-columns: 1fr;
+    }
+}
+
+#all_products .products_wrapper {
+    @media (min-width: 1280px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 639px) {
+        grid-template-columns: 1fr;
+    }
+}
