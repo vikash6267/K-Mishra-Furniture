@@ -134,104 +134,120 @@ const handleCoupon = async() =>{
 
     <div>
 
-    <div className="w-full lg:p-4  rounded-xl text-black ">
+    <div className="w-full bg-white rounded-xl shadow-md border border-gray-100">
+      {/* Header */}
       <button
         type="button"
         onClick={toggleSummary}
-        className="w-full  p-2 rounded-xl font-bold text-left flex justify-between items-center "
+        className="w-full p-4 font-bold text-left flex justify-between items-center bg-gray-50 rounded-t-xl hover:bg-gray-100 transition-colors"
       >
-        <div className='flex items-center gap-5'>  <FiShoppingCart /> Order Summary Details</div>
-        <span>{isOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
+        <div className="flex items-center gap-3 text-gray-800">
+          <FiShoppingCart className="text-lg" />
+          <span className="text-sm sm:text-base">Order Summary</span>
+        </div>
+        <span className="text-gray-500 h-5 w-5 flex items-center justify-center">
+          {isOpen ? <FaChevronUp /> : <FaChevronDown />}
+        </span>
       </button>
+
+      {/* Order Items */}
       {isOpen && (
-        <div className=" p-3 max-h-[110px] overflow-x-hidden overflow-y-auto scrollbar-w-[0.35vw]     ">
-         
+        <div className="p-3 max-h-[240px] overflow-x-hidden overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+          <ul className="flex flex-col gap-3">
+            {cart.map((item, ind) => (
+              <li key={ind} className="border border-gray-100 rounded-lg p-3 hover:bg-gray-50 transition-colors">
+                <div className="flex gap-3">
+                  <div className="w-[25%] sm:w-[20%] border-r border-gray-100 pr-3 flex items-center">
+                    <Link to={`/product/${item.product._id}`} onClick={handleClose} className="block w-full">
+                      <img
+                        src={item.product.images[0].url || "/placeholder.svg"}
+                        alt={item.product.title}
+                        className="w-full h-auto object-cover rounded-md"
+                      />
+                    </Link>
+                  </div>
 
-         <ul className=' flex flex-col gap-3 '>
-         {
-          cart.map((item,ind)=>(
-            <li key={ind} className=' border p-2'>
-              <div className=' flex gap-2'>
-                <div className='w-[25%] border-r-2 pr-3'>
-            <Link to={`/product/${item.product._id}`} onClick={handleClose}>
-
-                <img src={item.product.images[0].url} alt="product-img " className=' '   />
-            </Link>
-
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold line-clamp-1 mb-1">{item.product.title}</p>
+                    <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-xs text-gray-600">
+                      <p className="flex justify-between">
+                        <span className="text-gray-500">Price:</span>
+                        <span className="font-medium">{displayMoney(item.product.price)}</span>
+                      </p>
+                      <p className="flex justify-between">
+                        <span className="text-gray-500">Qty:</span>
+                        <span className="font-medium">{item.quantity}</span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
-
-
-
-                <div>
-                <p className=' text-[15px] font-semibold'>{item.product.title}</p>
-<p className=' text-[12px] lg:text-[14px]  '>{"Price-"}{"  "}{displayMoney(item.product.price)}</p>
-
-{/* <p className=' text-[12px] lg:text-[14px] '>{"Size-"}{item.size}</p> */}
-<p className=' text-[12px] lg:text-[14px]'>{"Quantity-"}{item.quantity}</p>
-
-
-                </div>
-              </div>
-            </li>
-          ))
-         }
-         </ul>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 
+      {/* Price Summary */}
+      <div className="mt-3 pt-3 border-t border-gray-100">
+        <div className="font-montserrat text-sm space-y-2 px-4">
+          <div className="flex justify-between items-center text-gray-600">
+            <span>Subtotal</span>
+            <span className="font-medium">{displayTotalAmount}</span>
+          </div>
 
+          {coupon && (
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600">Discount</span>
+              <span className="text-green-600 font-medium">- {displayMoney(couponValue)}</span>
+            </div>
+          )}
 
+          <div className="flex justify-between items-center text-gray-600">
+            <span>Shipping</span>
+            <span className="italic text-xs">To be calculated</span>
+          </div>
+        </div>
 
+        <div className="h-px bg-gray-200 my-3 mx-4"></div>
 
-    <div>
+        <div className="flex justify-between items-center px-4 py-2 bg-gray-50 rounded-b-xl">
+          <span className="font-bold text-gray-800">Total Payable</span>
+          <span className="font-bold text-lg">{displayMoney(payable)}</span>
+        </div>
 
-    <div className='mt-[20px] font-montserrat' >
-
-<div className=' flex w-full justify-between px-6 text-[13px]'>Subtotal <span> {displayTotalAmount}</span></div>
-{
-  coupon && (
-<div className=' flex w-full justify-between px-6 text-[13px]'>Discount <span className=' text-green-600'> - {displayMoney(couponValue)}</span></div>
-
-  )
-}
-<div className=' flex w-full justify-between px-6 text-[13px]'>Shipping <span> {"To be calculated"}</span></div>
-
-</div>
-
-
-
-<div className='min-h-[1px] max-w-[90%] bg-black mt-[20px] mx-auto'></div>
-
-<div className=' flex w-full justify-between px-6 font-bold text-[12px] mt-3'>Payable  <span> {displayMoney(payable)}</span></div>
-
-
-{ false && <div className='mt-3 px-6 flex flex-col gap-2'>
-  {/* <label htmlFor="coupon">Apply Coupon</label> */}
-  <div className='flex gap-5 relative '>
-    <div className="input-container ">
-    <input 
-  type="text" 
-  id='coupon' 
-  className='p-1' 
-  placeholder='Coupon Code' 
-  value={couponName.toUpperCase()} // Convert text to uppercase
-  onChange={(e) => {setCouponName(e.target.value.toUpperCase()) ; setCouponValid(true) } } // Convert input value to uppercase
-/>
-
-    </div>
-    {!couponValid && ( // Conditionally render error message if coupon is not valid
-          <div className='text-red-500 absolute -top-2 left-0 text-[10px]'>
-            {couponName} is not valid Coupon.
+        {false && (
+          <div className="mt-4 px-4 pb-4">
+            <p className="text-sm font-medium mb-1">Apply Coupon</p>
+            <div className="flex gap-2 relative">
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  id="coupon"
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-300"
+                  placeholder="Enter coupon code"
+                  value={couponName}
+                  onChange={(e) => {
+                    setCouponName(e.target.value.toUpperCase())
+                    setCouponValid(true)
+                  }}
+                />
+                {!couponValid && (
+                  <div className="text-red-500 absolute -bottom-5 left-0 text-xs">
+                    {couponName} is not a valid coupon.
+                  </div>
+                )}
+              </div>
+              <button
+                type="button"
+                className="px-4 py-2 bg-primary-600 text-white rounded-md text-sm font-medium hover:bg-primary-700 transition-colors"
+                onClick={handleCoupon}
+              >
+                Apply
+              </button>
+            </div>
           </div>
         )}
-    <button type='submit' className='button' onClick={handleCoupon}>Apply</button>
-  </div>
-</div>}
-
-    </div>
-
-
-
+      </div>
     </div>
 
 

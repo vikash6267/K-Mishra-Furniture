@@ -66,7 +66,7 @@ function Cart() {
                 />
               ) : (
                 <div className="flex w-full justify-between flex-col h-screen">
-                  <div className="w-full bg-bg-color-2 max-h-[400px] py-4 overflow-x-hidden overflow-y-auto scrollbar-w-[0.35vw]">
+                  <div className="w-full bg-bg-color-2 max-h-[75%] py-4 overflow-x-hidden overflow-y-auto scrollbar-w-[0.35vw]">
                     {cart.map((item, ind) => (
                       <CartItems key={ind} {...item} />
                     ))}
